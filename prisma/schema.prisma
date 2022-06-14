@@ -11,12 +11,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
 }
 
 model Generation {
-  id         Int         @id @default(autoincrement())
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
   createdAt  DateTime    @default(now()) @map("created_at")
   input      String
   output     String
@@ -26,9 +26,9 @@ model Generation {
 }
 
 model Suggestion {
-  id           Int        @id @default(autoincrement())
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
   createdAt    DateTime   @default(now()) @map("created_at")
-  generationId Int        @unique @map("generation_id")
+  generationId String     @unique @map("generation_id")
   generation   Generation @relation(fields: [generationId], references: [id])
   suggestion   String
   approved     Boolean
@@ -37,7 +37,7 @@ model Suggestion {
 }
 
 model ApiKey {
-  uid       String   @id @default(cuid())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now()) @map("created_at")
   apiKey    String   @unique @default(uuid()) @map("api_key")
   name      String
@@ -46,7 +46,7 @@ model ApiKey {
 }
 
 model User {
-  uid        String    @id @default(cuid())
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
   createdAt  DateTime  @default(now()) @map("created_at")
   lastActive DateTime? @map("last_active")
   username   String
