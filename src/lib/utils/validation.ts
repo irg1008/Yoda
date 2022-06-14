@@ -1,7 +1,6 @@
 import type { LogInData, PromptData, SignUpData } from '$lib/db/models';
 import { object, string, ref, ValidationError } from 'yup';
 import type { AnyObjectSchema } from 'yup';
-import type { ApiKey } from '@prisma/client';
 import { consts } from '$lib/openai/config/consts';
 
 const _validate = async <T>(schema: AnyObjectSchema, data: T) => {

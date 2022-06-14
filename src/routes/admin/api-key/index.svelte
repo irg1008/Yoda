@@ -14,10 +14,10 @@
 
 	const deleteKey = async (key: ApiKey) => {
 		loading = true;
-		const res = await apiKeyService.del(key.uid);
+		const res = await apiKeyService.del(key.id);
 		loading = false;
 		if (res.error) return;
-		keys = keys.filter((k) => k.uid !== key.uid);
+		keys = keys.filter((k) => k.id !== key.id);
 	};
 
 	const copyKey = (key: ApiKey) => {
@@ -28,7 +28,7 @@
 		loading = true;
 		const { data: key, error } = await apiKeyService.create(newApiName);
 		loading = false;
-		errors.name = error ?? '';
+		errors.name = error?.name ?? '';
 		if (!key) return;
 		keys = [...keys, key];
 	};
@@ -59,7 +59,7 @@
 <h1>Lista de claves</h1>
 
 <section class="keys-container">
-	{#each keys as key (key.uid)}
+	{#each keys as key (key.id)}
 		<article class="key-card">
 			<strong>{key.name}</strong>
 			<span class="key">

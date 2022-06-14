@@ -3,7 +3,7 @@ import type { CreateUserData } from '$lib/db/models';
 import { hash } from '$lib/utils/crypto';
 
 const get = async (id: string) => {
-	return await db.user.findUnique({ where: { uid: id } });
+	return await db.user.findUnique({ where: { id } });
 };
 
 const getByEmail = async (email: string) => {

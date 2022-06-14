@@ -5,13 +5,12 @@ import { validateApiKey } from '$lib/utils/validation';
 export const post: RequestHandler = async ({ request }) => {
 	const { name } = await request.json();
 
-	const errors = await validateApiKey(name);
-	if (errors)
+	const error = await validateApiKey(name);
+
+	if (error)
 		return {
 			status: 400,
-			body: {
-				error: errors.name
-			}
+			body: { error }
 		};
 
 	const apiKey = await apiKeyService.create(name);

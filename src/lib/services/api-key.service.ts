@@ -6,7 +6,7 @@ const del = async (id: string) => {
 };
 
 const create = async (name: string) => {
-	return await http.post<ApiKey>('/api/api-key', { name });
+	return await http.post<ApiKey, { name: string }>('/api/api-key', { name });
 };
 
 export default {

@@ -9,7 +9,7 @@ const list = async () => {
 };
 
 const get = async (id: string) => {
-	return await db.apiKey.findUnique({ where: { uid: id } });
+	return await db.apiKey.findUnique({ where: { id } });
 };
 
 const getByKey = async (key: string) => {
@@ -19,7 +19,7 @@ const getByKey = async (key: string) => {
 const remove = async (id: string) => {
 	const apiKey = await get(id);
 	if (!apiKey) return null;
-	return await db.apiKey.delete({ where: { uid: id } });
+	return await db.apiKey.delete({ where: { id } });
 };
 
 const exists = async (key: string) => {

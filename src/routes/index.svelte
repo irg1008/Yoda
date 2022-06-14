@@ -29,19 +29,7 @@
 <Spinner {loading} />
 
 <section>
-	<h1>Result</h1>
-
-	<span class="completion">
-		{#if completion}
-			<h2>{completion}</h2>
-		{:else}
-			<p>Send a prompt to get a completion here</p>
-		{/if}
-	</span>
-
-	<hr />
-
-	<h1>Prompt</h1>
+	<h1>Long Title</h1>
 
 	<form on:submit|preventDefault={() => sendTitle()}>
 		<div>
@@ -67,6 +55,18 @@
 
 		<button type="submit"><Send size={24} />Send</button>
 	</form>
+
+	<hr />
+
+	<h1>Short Title</h1>
+
+	<span class="completion">
+		{#if completion}
+			<h2>{completion}</h2>
+		{:else}
+			<p>Send a prompt to get a completion here</p>
+		{/if}
+	</span>
 </section>
 
 <style lang="postcss">
