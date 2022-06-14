@@ -8,16 +8,14 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	const { user } = event.locals;
 	const isAdminRoute = event.url.pathname.startsWith('/admin');
-	if (isAdminRoute && (!user || user.role !== 'ADMIN')) {
-		return new Response('Unauthorize', {
-			status: 302,
+	if (isAdminRoute && user?.role !== 'ADMIN')
+		return new Response(`${user?.role}`, {
+			status: 402,
 			headers: { location: '/' }
 		});
-	}
 
 	const response = await resolve(event);
 	response.headers.set('Set-Cookie', getUserCookie(event.locals.user?.id ?? ''));
-
 	return response;
 };
 
