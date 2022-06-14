@@ -6,13 +6,13 @@ import { validateLogInData } from '$lib/utils/validation';
 import type { RequestHandler } from '@sveltejs/kit';
 
 export const get: RequestHandler = async ({ locals }) => {
-	userService.create({
-		username: 'admin',
-		email: 'admin@admin.com',
-		password: 'admin',
-		verified: true,
-		role: 'ADMIN'
-	});
+	// userService.create({
+	// 	username: 'admin',
+	// 	email: 'admin@admin.com',
+	// 	password: 'admin',
+	// 	verified: true,
+	// 	role: 'ADMIN'
+	// });
 
 	if (locals?.user)
 		return {
