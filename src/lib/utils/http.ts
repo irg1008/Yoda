@@ -21,7 +21,7 @@ const customMethodFetch = async <Out, In = unknown>(
 	input: RequestInfo | URL,
 	{ body, params }: { body?: Record<string, unknown>; params?: Record<string, string> } = {}
 ): Promise<ErrorData<Out, In>> => {
-	if (!input.toString().startsWith('/api')) throw new Error('URL must start with /api');
+	if (!input.toString().startsWith('/')) throw new Error('URL must start with /');
 
 	if (params) {
 		const urlParams = new URLSearchParams(params);

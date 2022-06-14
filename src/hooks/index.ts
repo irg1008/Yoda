@@ -7,8 +7,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (userId) event.locals.user ??= await userService.get(userId);
 
 	const { user } = event.locals;
-	const isAdminRoute =
-		event.url.pathname.startsWith('/admin') || event.url.pathname.startsWith('/api/admin');
+	const isAdminRoute = event.url.pathname.startsWith('/admin');
 	if (isAdminRoute && user?.role !== 'ADMIN') {
 		return new Response('Unauthorize', {
 			status: 302,
