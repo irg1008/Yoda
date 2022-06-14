@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+enum Role {
+  ADMIN
+  USER
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Generation {
+  id         Int         @id @default(autoincrement())
+  createdAt  DateTime    @default(now()) @map("created_at")
+  input      String
+  output     String
+  suggestion Suggestion?
+
+  @@map("generations")
+}
+
+model Suggestion {
+  id           Int        @id @default(autoincrement())
+  createdAt    DateTime   @default(now()) @map("created_at")
+  generationId Int        @unique @map("generation_id")
+  generation   Generation @relation(fields: [generationId], references: [id])
+  suggestion   String
+  approved     Boolean
+
+  @@map("suggestions")
+}
+
+model ApiKey {
+  uid       String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  apiKey    String   @unique @default(uuid()) @map("api_key")
+  name      String
+
+  @@map("api_keys")
+}
+
+model User {
+  uid        String    @id @default(cuid())
+  createdAt  DateTime  @default(now()) @map("created_at")
+  lastActive DateTime? @map("last_active")
+  username   String
+  email      String    @unique
+  password   String
+  verified   Boolean   @default(false)
+  role       Role      @default(USER)
+
+  @@map("users")
+}
