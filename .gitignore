@@ -8,3 +8,5 @@ node_modules
 !.env.example
 
 prisma/migrations
+
+.vercel_build_output
