@@ -8,7 +8,7 @@ enum Role {
 
 generator client {
   provider      = "prisma-client-js"
-  binaryTargets = ["RHEL-OPENSSL-1.0.X"]
+  binaryTargets = ["native"]
 }
 
 datasource db {
