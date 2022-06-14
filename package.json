@@ -16,7 +16,7 @@
 		"db:push": "prisma db push",
 		"db:dev": "prisma studio",
 		"postinstall": "npm run db",
-		"postbuild": "ls node_modules/@prisma/engines/; cp node_modules/@prisma/engines/libquery-engine-* .vercel_build_output/functions/node/render/; cp prisma/schema.prisma .vercel_build_output/functions/node/render/"
+		"postbuild": "ls node_modules/@prisma/engines/; cp node_modules/@prisma/engines/libquery_engine-* .vercel_build_output/functions/node/render/; cp prisma/schema.prisma .vercel_build_output/functions/node/render/"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
