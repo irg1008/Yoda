@@ -10,3 +10,4 @@ node_modules
 prisma/migrations
 
 .vercel_build_output
+.netlify
