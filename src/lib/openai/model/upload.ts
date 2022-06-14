@@ -1,6 +1,6 @@
 import { withError } from '../utils/error-handler';
 import { openai } from './api';
-import type { ReadStream } from 'node:fs';
+import type { ReadStream } from 'fs';
 
 export const upoadFile = async (
 	file: ReadStream,

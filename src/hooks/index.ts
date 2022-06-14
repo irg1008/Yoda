@@ -8,7 +8,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	const { user } = event.locals;
 	const isAdminRoute = event.url.pathname.startsWith('/admin');
-	if (isAdminRoute && user?.role !== 'ADMIN') {
+	if (isAdminRoute && user && user.role !== 'ADMIN') {
 		return new Response('Unauthorize', {
 			status: 302,
 			headers: { location: '/' }
