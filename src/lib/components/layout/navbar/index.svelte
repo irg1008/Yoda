@@ -11,7 +11,7 @@
 				<a role="button" href="/admin">Admin</a>
 			{/if}
 			<a role="button" href="/auth/sign-out">Sign Out</a>
-			<span class="username">{user.username.at(0)}</span>
+			<span class="username">{user.username.charAt(0)}</span>
 		{:else}
 			<a role="button" href="/auth/sign-in">Sign In</a>
 		{/if}

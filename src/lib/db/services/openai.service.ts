@@ -7,7 +7,7 @@ const getCompletion = async (prompt: string): Promise<WithError<Completion>> => 
 	const { data, error } = await getOpenAICompletion(consts.fineTunnedModel, prompt);
 	if (error) return { error, data: null };
 
-	const completion = data?.choices?.at(0)?.text?.replace(consts.completionStart, '') ?? '';
+	const completion = data?.choices?.[0]?.text?.replace(consts.completionStart, '') ?? '';
 	return { error, data: { completion } };
 };
 
