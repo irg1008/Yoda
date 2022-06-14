@@ -8,7 +8,7 @@
 		<a role="button" href="/">Home</a>
 		{#if user}
 			{#if user.role === 'ADMIN'}
-				<a role="button" href="/dash/api-key">Admin</a>
+				<a role="button" href="/admin/api-key">Admin</a>
 			{/if}
 			<a role="button" href="/auth/sign-out">Sign Out</a>
 			<span class="username">{user.username.at(0)}</span>
