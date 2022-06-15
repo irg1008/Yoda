@@ -72,8 +72,8 @@
 <style lang="postcss">
 	h1 {
 		@apply bg-gradient-to-r
-    from-slate-600
-    to-cyan-600
+    from-rose-600
+    to-rose-400
     bg-clip-text
     text-transparent
     text-6xl

@@ -105,10 +105,10 @@
 	}
 
 	.copy-btn {
-		@apply bg-slate-200
+		@apply bg-gray-200
 		inline
-		text-slate-900
-		hover:bg-slate-300;
+		text-neutral-900
+		hover:bg-gray-300;
 	}
 
 	.key-card {

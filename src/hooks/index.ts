@@ -7,7 +7,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const userId = getCookie(event.request, 'user');
 	if (userId) event.locals.user ??= await userService.get(userId);
 
-	const response = await resolve(event);
 	const {
 		locals: { user },
 		url
@@ -21,6 +20,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			headers: { location: '/' }
 		});
 
+	const response = await resolve(event);
 	response.headers.set('Set-Cookie', getUserCookie(event.locals.user?.id ?? ''));
 	return response;
 };

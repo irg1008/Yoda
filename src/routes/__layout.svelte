@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	import Navbar from '$lib/components/layout/navbar/index.svelte';
+	import Navbar from '$lib/components/layout/navbar.svelte';
 </script>
 
 <Navbar />
@@ -15,7 +15,7 @@
 	}
 
 	body {
-		@apply bg-slate-100;
+		@apply bg-neutral-50;
 	}
 
 	main {
@@ -57,9 +57,9 @@
 		@apply py-2
 		px-4
 		rounded-lg
-		text-slate-50
-		bg-slate-700
-		hover:bg-slate-800
+		text-neutral-50
+		bg-rose-700
+		hover:bg-rose-800
 		uppercase
 		transition-all
 		duration-200
