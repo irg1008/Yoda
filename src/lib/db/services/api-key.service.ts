@@ -22,15 +22,10 @@ const remove = async (id: string) => {
 	return await db.apiKey.delete({ where: { id } });
 };
 
-const exists = async (key: string) => {
-	return (await getByKey(key)) !== null;
-};
-
 export default {
 	create,
 	list,
 	remove,
 	get,
-	getByKey,
-	exists
+	getByKey
 };

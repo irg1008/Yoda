@@ -1,4 +1,4 @@
-import type { User } from '@prisma/client';
+import type { Generation, Suggestion, User } from '@prisma/client';
 
 export type OptionalExcept<T, TRequired extends keyof T> = Partial<T> & Pick<T, TRequired>;
 
@@ -18,3 +18,8 @@ export type PromptData = {
 export type Completion = {
 	completion: string;
 };
+
+export type GenerationData = Pick<Generation, 'input' | 'output' | 'apiKeyId'>;
+
+export type SuggestionData = Pick<Suggestion, 'isCorrect' | 'generationId'> &
+	Partial<Pick<Suggestion, 'suggestion'>>;

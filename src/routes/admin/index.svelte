@@ -36,7 +36,7 @@
 
 <h1>Creación de API Keys</h1>
 
-<form on:submit|preventDefault={() => createKey()}>
+<form on:submit|preventDefault={() => createKey()} novalidate>
 	<div>
 		<label for="name">Name</label>
 		<input
@@ -46,10 +46,10 @@
 			bind:value={newApiName}
 			placeholder="i.e.: Feed shortener"
 		/>
-		{#if errors.name}
-			<span class="error">{errors.name}</span>
-		{/if}
 	</div>
+	{#if errors.name}
+		<span class="error">{errors.name}</span>
+	{/if}
 
 	<button type="submit">Añadir</button>
 </form>

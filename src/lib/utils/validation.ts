@@ -48,7 +48,16 @@ const promptSchema = object().shape({
 		.max(consts.maxPromptLength, 'Title must be 150 characters or less')
 });
 
+const suggestionSchema = object().shape({
+	suggestion: string()
+		.min(3, "You think that's SEO friendly?")
+		.required('You have come all this way to type nothing?')
+		.max(100, 'Dude, do you know what "short title" means')
+});
+
 export const validateLogInData = (data: LogInData) => _validate(logInSchema, data);
 export const validateSignUpData = (data: SignUpData) => _validate(signUpSchema, data);
 export const validateApiKey = (name: string) => _validate(createApiKeySchema, { name });
 export const validatePromt = (promptData: PromptData) => _validate(promptSchema, promptData);
+export const validateSuggestion = (suggestion: string) =>
+	_validate(suggestionSchema, { suggestion });

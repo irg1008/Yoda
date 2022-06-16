@@ -14,7 +14,7 @@
 	<div class="wrapper">
 		<h1>LOG IN</h1>
 
-		<form method="post">
+		<form method="post" novalidate>
 			<div>
 				<label for="email">Email</label>
 				<input id="email" name="email" type="email" value={data.email} />

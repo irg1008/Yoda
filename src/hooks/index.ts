@@ -1,4 +1,4 @@
-import userService from '$lib/db/services/user.service';
+import { userService } from '$lib/db/services';
 import { getCookie, getUserCookie } from '$lib/utils/cookie';
 import type { GetSession, Handle } from '@sveltejs/kit';
 // import { sequence } from '@sveltejs/kit/hooks';

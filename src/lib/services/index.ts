@@ -1,2 +1,4 @@
 import apiKeyService from './api-key.service';
-export { apiKeyService };
+import openaiService from './openai.service';
+import suggestionService from './suggestion.service';
+export { apiKeyService, openaiService, suggestionService };

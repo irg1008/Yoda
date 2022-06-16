@@ -19,9 +19,12 @@ datasource db {
 model Generation {
   id         String      @id @default(auto()) @map("_id") @db.ObjectId
   createdAt  DateTime    @default(now()) @map("created_at")
+  hash       String      @unique @map("hash")
   input      String
   output     String
   suggestion Suggestion?
+  apiKeyId   String      @map("api_key_id")
+  apiKey     ApiKey      @relation(fields: [apiKeyId], references: [id])
 
   @@map("generations")
 }
@@ -29,10 +32,11 @@ model Generation {
 model Suggestion {
   id           String     @id @default(auto()) @map("_id") @db.ObjectId
   createdAt    DateTime   @default(now()) @map("created_at")
-  generationId String     @unique @map("generation_id")
+  generationId String     @map("generation_id")
   generation   Generation @relation(fields: [generationId], references: [id])
-  suggestion   String
-  approved     Boolean
+  isCorrect    Boolean    @map("is_correct")
+  suggestion   String?
+  approved     Boolean    @default(false)
 
   @@map("suggestions")
 }
@@ -44,6 +48,7 @@ model ApiKey {
   name      String
 
   @@map("api_keys")
+  Generation Generation[]
 }
 
 model User {

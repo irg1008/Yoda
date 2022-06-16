@@ -28,7 +28,7 @@
 		@apply sticky
 		top-0
 		left-0
-		z-50
+		z-30
 		mb-10;
 	}
 
@@ -50,11 +50,12 @@
 		text-neutral-600
 		aspect-square
 		h-10
+		border-4
+		border-rose-900/50
 		flex
 		items-center
 		justify-center
-		font-bold
 		bg-neutral-50
-		text-2xl;
+		text-lg;
 	}
 </style>

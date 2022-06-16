@@ -1,15 +1,18 @@
 <script lang="ts">
+	import Output from '$lib/components/common/Completion.svelte';
 	import Spinner from '$lib/components/ui/spinner.svelte';
 	import type { PromptData } from '$lib/db/models';
+	import { modalStore } from '$lib/stores';
 	import { consts } from '$lib/openai/config/consts';
-	import openaiService from '$lib/services/openai.service';
+	import { openaiService } from '$lib/services';
+	import type { Generation } from '@prisma/client';
 	import Send from 'carbon-icons-svelte/lib/SendAlt.svelte';
 
 	export let apiKey: string = '';
 	export let apiKeyError: string = '';
 
 	let title = '';
-	let completion = '';
+	let completion: Generation;
 	let loading = false;
 
 	let errors: Record<keyof PromptData, string> = {
@@ -22,16 +25,21 @@
 		const { data, error } = await openaiService.getCompletion(apiKey, title);
 		loading = false;
 		errors = error ?? { apiKey: '', title: '' };
-		completion = data?.completion ?? '';
+		if (data) completion = data;
 	};
+
+	// On completion change.
+	$: if (completion) {
+		modalStore.open(Output, { completion });
+	}
 </script>
 
 <Spinner {loading} />
 
 <section>
-	<h1>Long Title</h1>
+	<h1 class="title">Long Title</h1>
 
-	<form on:submit|preventDefault={() => sendTitle()}>
+	<form on:submit|preventDefault={() => sendTitle()} novalidate>
 		<div>
 			<label for="key">Api Key</label>
 			<input id="key" bind:value={apiKey} type="text" placeholder="i.e.:1234-5678-9876" />
@@ -57,34 +65,9 @@
 	</form>
 
 	<hr />
-
-	<h1>Short Title</h1>
-
-	<span class="completion">
-		{#if completion}
-			<h2>{completion}</h2>
-		{:else}
-			<p>Send a prompt to get a completion here</p>
-		{/if}
-	</span>
 </section>
 
 <style lang="postcss">
-	h1 {
-		@apply bg-gradient-to-r
-    from-rose-600
-    to-rose-400
-    bg-clip-text
-    text-transparent
-    text-6xl
-    w-full
-    text-center;
-	}
-
-	h2 {
-		@apply text-3xl;
-	}
-
 	div,
 	input,
 	textarea {
@@ -114,9 +97,5 @@
 	section {
 		@apply max-w-lg
 		m-auto;
-	}
-
-	.completion {
-		@apply text-center;
 	}
 </style>

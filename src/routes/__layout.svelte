@@ -1,14 +1,27 @@
 <script lang="ts">
 	import '../app.css';
 	import Navbar from '$lib/components/layout/navbar.svelte';
+	import Modal from '$lib/components/layout/modal.svelte';
 </script>
 
+<Modal />
 <Navbar />
 <main>
 	<slot />
 </main>
 
 <style global lang="postcss">
+	.title {
+		@apply bg-gradient-to-r
+    from-rose-600
+    to-rose-400
+    bg-clip-text
+    text-transparent
+    text-6xl
+    w-full
+    text-center;
+	}
+
 	label {
 		@apply block
 		font-semibold;
@@ -28,8 +41,14 @@
 		@apply font-bold
 		text-4xl
 		uppercase
-		w-fit
 		mb-8;
+	}
+
+	h2 {
+		@apply font-semibold
+		text-2xl
+		uppercase
+		mb-4;
 	}
 
 	form {
@@ -46,7 +65,9 @@
 		border-neutral-400
 		focus:border-neutral-500
 		outline-none
-		bg-transparent;
+		bg-transparent
+		w-fit
+		min-w-[4em];
 	}
 
 	button,
@@ -67,7 +88,8 @@
 	}
 
 	hr {
-		@apply my-8;
+		@apply my-8
+		w-full;
 	}
 
 	.error {

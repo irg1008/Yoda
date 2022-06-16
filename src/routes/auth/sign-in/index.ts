@@ -1,5 +1,5 @@
 import type { LogInData } from '$lib/db/models';
-import userService from '$lib/db/services/user.service';
+import { userService } from '$lib/db/services';
 import { hash } from '$lib/utils/crypto';
 import { getRequestFormData } from '$lib/utils/form';
 import { validateLogInData } from '$lib/utils/validation';

@@ -6,10 +6,10 @@ export const get: RequestHandler = async ({ url }) => {
 	const apiKey = searchParams.get('apiKey');
 	if (!apiKey) return {};
 
-	const exists = await apiKeyService.exists(apiKey);
+	const key = await apiKeyService.getByKey(apiKey);
 	return {
 		body: {
-			apiKeyError: !exists && 'Invalid params API Key',
+			apiKeyError: !key && 'Invalid params API Key',
 			apiKey
 		}
 	};
