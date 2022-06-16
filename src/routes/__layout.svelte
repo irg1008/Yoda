@@ -2,13 +2,16 @@
 	import '../app.css';
 	import Navbar from '$lib/components/layout/navbar.svelte';
 	import Modal from '$lib/components/layout/modal.svelte';
+	import { browser } from '$app/env';
 </script>
 
-<Modal />
-<Navbar />
-<main>
-	<slot />
-</main>
+{#if browser}
+	<Modal />
+	<Navbar />
+	<main>
+		<slot />
+	</main>
+{/if}
 
 <style global lang="postcss">
 	.title {

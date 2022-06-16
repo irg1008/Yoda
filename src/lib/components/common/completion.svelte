@@ -22,7 +22,7 @@
 
 	const markAsCorrect = async () => {
 		markedAsCorrect = true;
-		const { data, error } = await suggest(true);
+		await suggest(true);
 	};
 
 	const markAsIncorrect = async () => {

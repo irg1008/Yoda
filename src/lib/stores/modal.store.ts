@@ -12,7 +12,6 @@ const { set } = modal;
 
 const empty = () => set(undefined);
 
-// TODO: Type this motherfucker component.
 const open = <T>(component: any, props?: T) => {
 	const keyedModal: Modal<T> = { key: crypto.randomUUID(), component, props };
 	set(keyedModal);
