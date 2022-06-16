@@ -5,6 +5,8 @@
 	import { browser } from '$app/env';
 </script>
 
+<svelte:head><title>YODA - AI Title Shortener</title></svelte:head>
+
 <Modal />
 <Navbar />
 <main>
