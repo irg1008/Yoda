@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Output from '$lib/components/common/Completion.svelte';
+	import Output from '$lib/components/common/completion.svelte';
 	import Spinner from '$lib/components/ui/spinner.svelte';
 	import type { PromptData } from '$lib/db/models';
 	import { modalStore } from '$lib/stores';

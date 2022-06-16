@@ -5,13 +5,11 @@
 	import { browser } from '$app/env';
 </script>
 
-{#if browser}
-	<Modal />
-	<Navbar />
-	<main>
-		<slot />
-	</main>
-{/if}
+<Modal />
+<Navbar />
+<main>
+	<slot />
+</main>
 
 <style global lang="postcss">
 	.title {
