@@ -63,8 +63,6 @@
 
 		<button type="submit"><Send size={24} />Send</button>
 	</form>
-
-	<hr />
 </section>
 
 <style lang="postcss">

@@ -97,7 +97,7 @@
 						{/if}
 					</div>
 
-					<button type="submit">Send suggestion</button>
+					<button type="submit">Send</button>
 				</form>
 			{/if}
 		{/if}
