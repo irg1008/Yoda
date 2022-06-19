@@ -1,7 +1,17 @@
-<script lang="ts">
-	import { page } from '$app/stores';
+<script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
 
-	console.log($page);
+	export const load: Load = ({ error, status }) => {
+		return {
+			props: {
+				title: `${status}: ${error?.message}`
+			}
+		};
+	};
 </script>
 
-<h1>{$page.status}: {$page.error?.message}</h1>
+<script lang="ts">
+	export let title: string;
+</script>
+
+<h1>{title}</h1>
