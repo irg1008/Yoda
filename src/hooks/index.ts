@@ -12,20 +12,19 @@ export const handle: Handle = async ({ event, resolve }) => {
 		url
 	} = event;
 
-	const isAdminRoute = url.pathname.startsWith('/admin');
-	const isAdmin = user?.role === 'ADMIN';
-	console.log(event.url);
-	if (isAdminRoute && !isAdmin)
-		return new Response(null, {
-			status: 302,
-			headers: { location: '/' }
-		});
+	// const isAdminRoute = url.pathname.startsWith('/admin');
+	// const isAdmin = user?.role === 'ADMIN';
+	// if (isAdminRoute && !isAdmin)
+	// 	return new Response(null, {
+	// 		status: 302,
+	// 		headers: { location: '/' }
+	// 	});
 
 	const response = await resolve(event);
 
 	response.headers.set('Set-Cookie', getUserCookie(event.locals.user?.id ?? ''));
-
-	return new Response(response.body, response);
+	
+	return response;
 };
 
 export const getSession: GetSession = async ({ locals: { user } }) => {
