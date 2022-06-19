@@ -1,7 +1,7 @@
 import { userService } from '$lib/db/services';
 import { getCookie, getUserCookie } from '$lib/utils/cookie';
 import type { GetSession, Handle } from '@sveltejs/kit';
-// import { sequence } from '@sveltejs/kit/hooks';
+import { sequence } from '@sveltejs/kit/hooks';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const userId = getCookie(event.request, 'user');
@@ -17,7 +17,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (isAdminRoute && !isAdmin)
 		return new Response(null, {
 			status: 302,
-			headers: { location: '/' }
+			headers: { location: `/${isAdmin}` }
 		});
 
 	const response = await resolve(event);
