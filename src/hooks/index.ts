@@ -12,15 +12,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 		url
 	} = event;
 
-	const isAdminRouteAndNotAdmin = url.pathname.startsWith('/admin') && user?.role !== 'ADMIN';
-
-	if (isAdminRouteAndNotAdmin)
-		return new Response(`Unauthorized`, {
-			status: 302,
-			headers: { location: '/' }
-		});
+	const isAdminRoute = url.pathname.startsWith('/admin');
+	const isAdmin = user?.role === 'ADMIN';
+	if (isAdminRoute && !isAdmin) return Response.redirect(event.url.origin, 302);
 
 	const response = await resolve(event);
+
 	response.headers.set('Set-Cookie', getUserCookie(event.locals.user?.id ?? ''));
 	return response;
 };

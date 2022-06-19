@@ -2,7 +2,6 @@
 	import '../app.css';
 	import Navbar from '$lib/components/layout/navbar.svelte';
 	import Modal from '$lib/components/layout/modal.svelte';
-	import { browser } from '$app/env';
 </script>
 
 <svelte:head><title>YODA - AI Title Shortener</title></svelte:head>
