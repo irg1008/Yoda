@@ -14,7 +14,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	const isAdminRoute = url.pathname.startsWith('/admin');
 	const isAdmin = user?.role === 'ADMIN';
-	if (isAdminRoute && !isAdmin) return Response.redirect(event.url.origin, 302);
+	console.log(event.url);
+	if (isAdminRoute && !isAdmin)
+		return new Response(null, {
+			status: 302,
+			headers: { location: '/' }
+		});
 
 	const response = await resolve(event);
 
