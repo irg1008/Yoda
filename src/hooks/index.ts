@@ -7,23 +7,23 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const userId = getCookie(event.request, 'user');
 	if (userId) event.locals.user ??= await userService.get(userId);
 
+	const response = await resolve(event);
+
 	const {
 		locals: { user },
 		url
 	} = event;
 
-	// const isAdminRoute = url.pathname.startsWith('/admin');
-	// const isAdmin = user?.role === 'ADMIN';
-	// if (isAdminRoute && !isAdmin)
-	// 	return new Response(null, {
-	// 		status: 302,
-	// 		headers: { location: '/' }
-	// 	});
-
-	const response = await resolve(event);
+	const isAdminRoute = url.pathname.startsWith('/admin');
+	const isAdmin = user?.role === 'ADMIN';
+	if (isAdminRoute && !isAdmin)
+		return new Response(null, {
+			status: 302,
+			headers: { location: '/' }
+		});
 
 	response.headers.set('Set-Cookie', getUserCookie(event.locals.user?.id ?? ''));
-	
+
 	return response;
 };
 
