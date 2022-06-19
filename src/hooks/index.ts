@@ -24,7 +24,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const response = await resolve(event);
 
 	response.headers.set('Set-Cookie', getUserCookie(event.locals.user?.id ?? ''));
-	return response;
+
+	return new Response(response.body, response);
 };
 
 export const getSession: GetSession = async ({ locals: { user } }) => {
