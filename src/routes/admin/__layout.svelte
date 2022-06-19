@@ -2,7 +2,6 @@
 	import type { Load } from '@sveltejs/kit';
 
 	export const load: Load = ({ session }) => {
-		console.log('reaching here');
 		const isAdmin = session.user?.role === 'ADMIN';
 		if (!isAdmin) {
 			return {
