@@ -40,7 +40,8 @@
 		w-full
 		top-0
 		left-0
-		bg-darker/60
+		bg-lighter/40
+		backdrop-blur-sm
 		z-40
 		flex
 		sm:p-4
@@ -52,12 +53,15 @@
 
 	article {
 		@apply bg-lighter
+		text-darker
 		sm:rounded-xl
 		p-8
 		w-full
 		overflow-auto
 		max-h-full
 		max-w-4xl
+		shadow-2xl
+		shadow-darker/5
 		relative;
 	}
 
