@@ -50,9 +50,9 @@
 	.wrapper {
 		@apply flex
 		flex-col
-		bg-slate-50
+		bg-lighter
 		shadow-lg
-		shadow-neutral-300/20
+		shadow-light/20
 		p-8
 		rounded-xl;
 	}

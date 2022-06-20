@@ -1,2 +1,3 @@
 import modalStore from './modal.store';
-export { modalStore };
+import themeStore from './theme.store';
+export { modalStore, themeStore };

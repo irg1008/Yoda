@@ -2,6 +2,9 @@
 	import '../app.css';
 	import Navbar from '$lib/components/layout/navbar.svelte';
 	import Modal from '$lib/components/layout/modal.svelte';
+	import { themeStore } from '$lib/stores';
+
+	themeStore.loadTheme();
 </script>
 
 <svelte:head><title>YODA - AI Title Shortener</title></svelte:head>
@@ -15,8 +18,8 @@
 <style global lang="postcss">
 	.title {
 		@apply bg-gradient-to-r
-    from-rose-600
-    to-rose-400
+    from-prim
+    to-tert
     bg-clip-text
     text-transparent
     text-6xl
@@ -30,7 +33,8 @@
 	}
 
 	body {
-		@apply bg-neutral-50;
+		@apply bg-light
+		text-darker;
 	}
 
 	main {
@@ -64,11 +68,13 @@
 		my-2
 		rounded-lg
 		border-2
-		border-neutral-400
-		focus:border-neutral-500
+		border-medium
+		focus:border-dark
 		outline-none
 		bg-transparent
 		w-fit
+		transition-all
+		duration-200
 		min-w-[4em];
 	}
 
@@ -80,9 +86,9 @@
 		@apply py-2
 		px-4
 		rounded-lg
-		text-neutral-50
-		bg-rose-700
-		hover:bg-rose-800
+		text-lighter
+		bg-sec
+		hover:bg-accent
 		uppercase
 		transition-all
 		duration-200

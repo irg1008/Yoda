@@ -6,7 +6,7 @@ export const get: RequestHandler = async ({ locals }) => {
 	return {
 		status: 302,
 		headers: {
-			location: '/'
+			location: '/auth/sign-in'
 		}
 	};
 };

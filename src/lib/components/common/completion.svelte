@@ -72,7 +72,7 @@
 
 	{#if hasGivenScore}
 		{#if markedAsCorrect}
-			<span class="input" transition:slide> We are glad! You may try another one </span>
+			<span class="input" transition:slide>Thank you!</span>
 		{:else if markedAsIncorrect}
 			{#if suggestedCorrectly}
 				<span class="input" transition:slide>
@@ -80,11 +80,9 @@
 				</span>
 			{:else}
 				<form on:submit|preventDefault={() => sendSuggestion()} novalidate transition:slide>
-					<span class="input suggestion-title">
-						So sorry it didn't work. Please leave a suggestion for this title:
-					</span>
+					<span class="input suggestion-title"> Please leave a suggestion: </span>
 
-					<div class="field">
+					<div>
 						<label for="text">Your suggestion</label>
 						<input
 							id="text"
@@ -132,13 +130,6 @@
 		gap-6;
 	}
 
-	.field {
-		@apply flex
-		flex-col
-		justify-center
-		items-center;
-	}
-
 	.score {
 		@apply flex
 		flex-col
@@ -151,9 +142,8 @@
 		@apply flex
 		flex-col
 		mt-4
-		gap-6
-		items-center
-		justify-center;
+		gap-2
+		items-start;
 	}
 
 	.suggestion-title {
@@ -168,7 +158,7 @@
 		flex
 		items-center
 		justify-center
-		text-neutral-50;
+		text-lighter;
 		&:not(.selected) {
 			@apply hover:scale-105;
 			&:disabled {

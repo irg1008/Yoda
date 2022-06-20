@@ -46,10 +46,10 @@
 			bind:value={newApiName}
 			placeholder="i.e.: Feed shortener"
 		/>
+		{#if errors.name}
+			<span class="error">{errors.name}</span>
+		{/if}
 	</div>
-	{#if errors.name}
-		<span class="error">{errors.name}</span>
-	{/if}
 
 	<button type="submit">Añadir</button>
 </form>
@@ -69,7 +69,7 @@
 				<button class="copy-btn" on:click={() => copyKey(key)}>
 					<Copy size={16} />
 				</button>
-				<button class="del-btn" on:click={() => deleteKey(key)}>
+				<button on:click={() => deleteKey(key)}>
 					<TrashCan size={16} />
 				</button>
 			</div>
@@ -86,7 +86,7 @@
 		@apply sticky
 		text-transparent
 		bg-clip-text
-		text-slate-600
+		text-dark
 		text-4xl;
 	}
 
@@ -97,25 +97,20 @@
 		}
 	}
 
-	.del-btn {
-		@apply bg-red-800
-		inline
-		text-white
-		hover:bg-red-700;
-	}
-
 	.copy-btn {
-		@apply bg-gray-200
+		@apply bg-lighter
 		inline
-		text-neutral-900
-		hover:bg-gray-300;
+		text-darker
+		border
+		border-light
+		hover:bg-light;
 	}
 
 	.key-card {
 		@apply p-4
-		bg-neutral-50
+		bg-lighter
 		shadow-lg
-		shadow-neutral-300/40
+		shadow-neutral-700/5
 		rounded-lg
 		flex
 		flex-col
@@ -128,7 +123,7 @@
 	.key {
 		@apply text-lg
 		font-semibold
-		text-gray-800;
+		text-dark;
 	}
 
 	.keys-container {

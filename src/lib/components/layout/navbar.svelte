@@ -1,25 +1,71 @@
 <script lang="ts">
 	import { session } from '$app/stores';
 	import Link from '$lib/components/ui/link.svelte';
+	import { themeStore } from '$lib/stores';
+	import System from 'carbon-icons-svelte/lib/Incomplete.svelte';
+	import Moon from 'carbon-icons-svelte/lib/Moon.svelte';
+	import Sun from 'carbon-icons-svelte/lib/Sun.svelte';
+
 	const { user } = $session;
+	const { setDarkTheme, setLightTheme, setSystemTheme, theme } = themeStore;
+
+	$: themesAndAction = [
+		{
+			icon: Moon,
+			action: setDarkTheme,
+			label: 'Dark Theme',
+			active: $theme === 'dark'
+		},
+		{
+			icon: Sun,
+			action: setLightTheme,
+			label: 'Light Theme',
+			active: $theme === 'light'
+		},
+		{
+			icon: System,
+			action: setSystemTheme,
+			label: 'System Theme',
+			active: $theme === null
+		}
+	];
 </script>
 
 <header>
 	<navbar>
-		<div>
-			<Link role="button" href="/">Home</Link>
+		<ul>
+			<li>
+				<Link role="button" href="/">Home</Link>
+			</li>
 			{#if user?.role === 'ADMIN'}
-				<Link role="button" href="/admin">Admin</Link>
+				<li>
+					<Link role="button" href="/admin">Admin</Link>
+				</li>
 			{/if}
-		</div>
-		<div>
+		</ul>
+
+		<ul>
 			{#if user}
-				<span class="username">{user.username.charAt(0)}</span>
-				<Link role="button" href="/auth/sign-out">Sign Out</Link>
+				<li>
+					<span class="username">{user.username.charAt(0)}</span>
+				</li>
+				<li>
+					<Link role="button" href="/auth/sign-out">Sign Out</Link>
+				</li>
 			{:else}
-				<Link role="button" href="/auth/sign-in">Sign In</Link>
+				<li>
+					<Link role="button" href="/auth/sign-in">Sign In</Link>
+				</li>
 			{/if}
-		</div>
+
+			<li class="group">
+				{#each themesAndAction as theme}
+					<button on:click={theme.action} class:active={theme.active} title={theme.label}>
+						<svelte:component this={theme.icon} />
+					</button>
+				{/each}
+			</li>
+		</ul>
 	</navbar>
 </header>
 
@@ -32,30 +78,53 @@
 		mb-10;
 	}
 
+	.group {
+		@apply flex
+		ml-4
+		rounded-lg
+		overflow-hidden
+		bg-accent/50;
+		& button {
+			@apply bg-transparent
+			hover:bg-accent
+			rounded-none;
+			&.active {
+				@apply bg-lighter
+				text-darker;
+			}
+		}
+	}
+
 	navbar {
-		@apply bg-rose-700
+		@apply bg-sec
 		shadow-md
 		p-4
 		flex
-		justify-evenly;
+		justify-evenly
+		items-center;
 	}
 
-	div {
-		@apply flex gap-2;
+	ul {
+		@apply flex
+		gap-2;
+	}
+
+	li {
+		@apply flex;
 	}
 
 	.username {
 		@apply uppercase
 		rounded-full
-		text-neutral-600
+		text-dark
 		aspect-square
 		h-10
 		border-4
-		border-rose-900/50
+		border-accent/50
 		flex
 		items-center
 		justify-center
-		bg-neutral-50
+		bg-lighter
 		text-lg;
 	}
 </style>

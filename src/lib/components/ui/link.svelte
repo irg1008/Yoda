@@ -14,6 +14,6 @@
 	}
 
 	.active {
-		@apply bg-rose-900;
+		@apply bg-accent;
 	}
 </style>

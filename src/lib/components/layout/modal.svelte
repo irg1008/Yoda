@@ -40,7 +40,7 @@
 		w-full
 		top-0
 		left-0
-		bg-neutral-800/60
+		bg-darker/60
 		z-40
 		flex
 		sm:p-4
@@ -51,7 +51,7 @@
 	}
 
 	article {
-		@apply bg-neutral-50
+		@apply bg-lighter
 		sm:rounded-xl
 		p-8
 		w-full
@@ -67,9 +67,9 @@
 		right-0
 		top-0
 		m-4
-		bg-neutral-100
-		hover:bg-neutral-200
-		text-neutral-800
+		bg-lighter
+		hover:bg-light
+		text-darker
 		p-2;
 	}
 </style>
