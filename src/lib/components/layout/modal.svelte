@@ -25,7 +25,9 @@
 			transition:fly={{ duration: 300, y: -100, easing: backOut }}
 			use:clickOutside={closeModal}
 		>
-			<button class="close-btn" on:click={() => closeModal()}><Close size={24} /></button>
+			<button class="close-btn" on:click={() => closeModal()}>
+				<Close size={24} />
+			</button>
 			<svelte:component this={$modal.component} {...$modal.props} />
 		</article>
 	</dialog>

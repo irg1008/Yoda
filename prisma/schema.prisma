@@ -23,8 +23,8 @@ model Generation {
   input      String
   output     String
   suggestion Suggestion?
-  apiKeyId   String      @map("api_key_id")
-  apiKey     ApiKey      @relation(fields: [apiKeyId], references: [id])
+  apiKeyId   String?     @map("api_key_id")
+  apiKey     ApiKey?     @relation(fields: [apiKeyId], references: [id])
 
   @@map("generations")
 }
@@ -32,8 +32,8 @@ model Generation {
 model Suggestion {
   id           String     @id @default(auto()) @map("_id") @db.ObjectId
   createdAt    DateTime   @default(now()) @map("created_at")
-  generationId String     @map("generation_id")
-  generation   Generation @relation(fields: [generationId], references: [id])
+  generationId String     @unique @map("generation_id")
+  generation   Generation @relation(fields: [generationId], references: [id], onDelete: Cascade)
   isCorrect    Boolean    @map("is_correct")
   suggestion   String?
   approved     Boolean    @default(false)
@@ -47,8 +47,8 @@ model ApiKey {
   apiKey    String   @unique @default(uuid()) @map("api_key")
   name      String
 
-  @@map("api_keys")
   Generation Generation[]
+  @@map("api_keys")
 }
 
 model User {
