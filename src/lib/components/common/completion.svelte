@@ -11,6 +11,7 @@
 	let markedAsCorrect: boolean;
 	$: markedAsIncorrect = markedAsCorrect === false;
 	$: hasGivenScore = markedAsCorrect || markedAsIncorrect;
+	$: downSize = (completion.input.length / completion.output.length) * 100;
 
 	const suggest = async (correct: boolean, suggestionText?: string) => {
 		return await suggestionService.suggest({
@@ -42,7 +43,7 @@
 <header>
 	<h1 class="title">Short Title</h1>
 	<span class="input">{completion.input}</span>
-	<ArrowDown size={24} />
+	<ArrowDown size={24} /> Reducción: {downSize.toFixed(2)}%
 	<h2 class="output">{completion.output}</h2>
 </header>
 
